@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'pages_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'telusko',
+        'NAME': 'asdasdasd',
         'USER': 'postgres',
         'PASSWORD':'123456789',
         'HOST':'localhost'

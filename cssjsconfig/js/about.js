@@ -23,7 +23,7 @@ $(document).ready(function()
 
 	*/
 
-	var header = $('.header');
+	var header = $('.header'); /*defining header */
 	var headerSocial = $('.header_social');
 	var menu = $('.menu');
 	var menuActive = false;
@@ -57,7 +57,7 @@ $(document).ready(function()
 
 	*/
 
-	function setHeader()
+	function setHeader() /*javascript function*/
 	{
 		if($(window).scrollTop() > 127)
 		{
@@ -77,7 +77,7 @@ $(document).ready(function()
 
 	*/
 
-	function initMenu()
+	function initMenu() /*main menu*/
 	{
 		if($('.menu').length)
 		{

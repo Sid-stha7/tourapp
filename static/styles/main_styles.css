@@ -45,7 +45,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    background: #FFFFFF;
     color: #a5a5a5;
 }
 
@@ -1379,4 +1378,41 @@ section {
 
 .footer_contact_list ul li:not(:last-child) {
     margin-bottom: 7px;
+}
+
+
+/* button */
+
+.button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 24px;
+    border: 1px solid #002d7a;
+    border-radius: 8px;
+    background: #ffffff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+    background: -moz-linear-gradient(top, #ffffff, #ffffff);
+    background: linear-gradient(to bottom, #ffffff, #ffffff);
+    -webkit-box-shadow: #ffffff 0px 0px 40px 0px;
+    -moz-box-shadow: #ffffff 0px 0px 40px 0px;
+    box-shadow: #ffffff 0px 0px 40px 0px;
+    text-shadow: #ffffff 1px 1px 1px;
+    font: normal normal bold 13px arial;
+    color: #111111;
+    text-decoration: none;
+}
+
+.button:hover,
+.button:focus {
+    border: 1px solid #0071ff;
+    color: #111111;
+    text-decoration: none;
+}
+
+.button:active {
+    background: #999999;
+    background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#ffffff));
+    background: -moz-linear-gradient(top, #999999, #ffffff);
+    background: linear-gradient(to bottom, #999999, #ffffff);
 }

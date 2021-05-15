@@ -28,6 +28,7 @@ def index(request):
 def book(request):
     return render(request, 'book.html')
 
+#added login function
 
 def login(request):
     if request.method == 'POST':

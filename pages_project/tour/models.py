@@ -25,15 +25,6 @@ class Gallery_pics(models.Model):
 class Gallery(models.Model):
     img =   models.ImageField(upload_to='pics')
 
-class Booking(models.Model):
-    name = models.CharField( max_length=100 )
-    lname = models.CharField(max_length=100, default='chalyoo')
-    phone_number=models.CharField(max_length=100, default='chalyoo')
-    email = models.CharField(max_length=100, default='chalyoo')
-    destination = models.CharField(max_length=100, default='chalyoo')
-    startdate = models.CharField(max_length=100, default='chalyoo')
-    adult = models.CharField(max_length=100, default='chalyoo')
-    child = models.CharField(max_length=100, default='chalyoo')
     
 
 class MyForm(forms.ModelForm):

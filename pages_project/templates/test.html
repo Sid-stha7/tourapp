@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <title>Document</title>
+</head>
+
+<style>
+    .containerss {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 50px;
+    }
+    
+    button {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        border: 0;
+        vertical-align: middle;
+        text-decoration: none;
+        background: transparent;
+        padding: 20px 5px;
+        color: #3c376f;
+        font-size: 2rem;
+    }
+    
+    button span {
+        position: relative;
+        display: inline-block;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+    }
+    
+    .previous:hover span {
+        transform: translateX(-10px) scale(1.2);
+    }
+    
+    .next:hover span {
+        transform: translateX(10px) scale(1.2);
+    }
+    
+    .slider-nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .slider-nav li {
+        display: flex;
+        flex: 2;
+        text-align: center;
+    }
+    
+    img {
+        max-width: 100%;
+        display: none;
+        box-shadow: 10px 10px 20px 0 rgba(94, 47, 59, 0.2);
+    }
+    
+    img.active {
+        display: block;
+        -webkit-animation: fadeImg 0.8s;
+        animation: fadeImg 0.8s;
+    }
+    
+    .slider-nav .arrow {
+        flex: 0 0 15%;
+    }
+    
+    .slider-nav a {
+        flex-basis: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .slider-nav span {
+        display: block;
+        width: 100%;
+    }
+    
+    @-webkit-keyframes fadeImg {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fadeImg {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
+<body>
+    <div class="containerss">
+        <div class="slider">
+            <img class="active" src="https://source.unsplash.com/gKk9rpyDryU">
+            <img src="https://source.unsplash.com/VFGEhLznjPU">
+            <img src="https://source.unsplash.com/InR-EhiO_js">
+        </div>
+        <nav class="slider-nav">
+            <ul>
+                <li class="arrow">
+                    <button class="previous">
+                <span>
+                  <i class="ion-arrow-left-c"></i>
+                </span>
+              </button>
+                </li>
+                <li class="arrow">
+                    <button class="next">
+                <span>
+                  <i class="ion-arrow-right-c"></i>
+                </span>
+              </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+<script>
+    const items = document.querySelectorAll('img');
+    const itemCount = items.length;
+    const nextItem = document.querySelector('.next');
+    const previousItem = document.querySelector('.previous');
+    let count = 0;
+
+    function showNextItem() {
+        items[count].classList.remove('active');
+
+        if (count < itemCount - 1) {
+            count++;
+        } else {
+            count = 0;
+        }
+
+        items[count].classList.add('active');
+        console.log(count);
+    }
+
+    function showPreviousItem() {
+        items[count].classList.remove('active');
+
+        if (count > 0) {
+            count--;
+        } else {
+            count = itemCount - 1;
+        }
+
+        items[count].classList.add('active');
+        console.log(count);
+    }
+
+    function keyPress(e) {
+        e = e || window.event;
+
+        if (e.keyCode == '37') {
+            showPreviousItem();
+        } else if (e.keyCode == '39') {
+            showNextItem();
+        }
+    }
+
+    nextItem.addEventListener('click', showNextItem);
+    previousItem.addEventListener('click', showPreviousItem);
+    document.addEventListener('keydown', keyPress);
+</script>
+
+</html>

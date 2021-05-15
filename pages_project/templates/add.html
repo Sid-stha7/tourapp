@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Booking Form</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Tour management">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static'plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/about.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/about_responsive.css' %}">
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Montserrat:400,700' %}" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/nav.css">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="../static/styles/login.css" />
+
+
+</head>
+<style>
+    body {
+        background-color: black;
+    }
+    
+    .card {
+        padding: 30px 40px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        border: none !important;
+        box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
+    }
+    
+    .blue-text {
+        color: #00BCD4
+    }
+    
+    .form-control-label {
+        margin-bottom: 0
+    }
+    
+    input,
+    textarea,
+    button {
+        padding: 8px 15px;
+        border-radius: 5px !important;
+        margin: 5px 0px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-size: 18px !important;
+        font-weight: 300
+    }
+    
+    input:focus,
+    textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #00BCD4;
+        outline-width: 0;
+        font-weight: 400
+    }
+    
+    .btn-block {
+        text-transform: uppercase;
+        font-size: 15px !important;
+        font-weight: 400;
+        height: 43px;
+        cursor: pointer
+    }
+    
+    .btn-block:hover {
+        color: #fff !important
+    }
+    
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-custom navbar-mainbg">
+        <a class="navbar-brand navbar-logo" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-align-justify"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <div class="hori-selector">
+                    <div class="left"></div>
+                    <div class="right"></div>
+                </div>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="javascript:void(0);">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'package' %}">Packages</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'add' %}">Book</a>
+                </li>
+
+                {% if user.is_authenticated %}
+                <li>Hello, {{user.first_name}}</li>
+                <li><a href="logout">logout</a></li>
+                {% else %}
+                <li><a href="register">Register</a></li>
+                <li><a href="login">login</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </nav>
+    <div class="space" style="height: 100px;"></div>
+    <form method="POST" action="{% url 'add' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputName">Name</label>
+            <input type="text" class="form-control" name="name" aria-describedby="name" placeholder="Name">
+
+            <label for="exampleInputName">Last Name</label>
+            <input type="text" class="form-control" name="lname" aria-describedby="name" placeholder="Name">
+
+
+            <label for="exampleInputName">Phone Number</label>
+            <input type="text" class="form-control" name="phone_number" aria-describedby="name" placeholder="Name">
+
+            <label for="exampleInputName">Email</label>
+            <input type="text" class="form-control" name="email" aria-describedby="name" placeholder="Name">
+
+            <label for="exampleInputName">Destination</label>
+            <input type="text" class="form-control" name="destination" aria-describedby="name" placeholder="Name">
+
+            <label for="exampleInputName">Startdate</label>
+            <input type="text" class="form-control" name="startdate" aria-describedby="name" placeholder="Name">
+
+            <label for="exampleInputName">Children</label>
+            <input type="text" class="form-control" name="child" aria-describedby="name" placeholder="Name">
+
+            <label for="exampleInputName">Adult</label>
+            <input type="text" class="form-control" name="adult" aria-describedby="name" placeholder="Name">
+        </div>
+        {% if form.errors %} {% for field in form %} {% for error in field.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %} {% endfor %} {% endif %}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <footer class="footer">
+        <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/footer_1.jpg' %}" data-speed="0.8"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="newsletter">
+                        <div class="newsletter_title_container text-center">
+                            <div class="newsletter_title">Subscribe to our newsletter to get the latest trends & news</div>
+                            <div class="newsletter_subtitle">Join our database NOW!</div>
+                        </div>
+                        <div class="newsletter_form_container">
+                            <form action="#" class="newsletter_form d-flex flex-md-row flex-column align-items-start justify-content-between" id="newsletter_form">
+                                <div class="d-flex flex-md-row flex-column align-items-start justify-content-between">
+                                    <div><input type="text" class="newsletter_input newsletter_input_name" id="newsletter_input_name" placeholder="Name" required="required">
+                                        <div class="input_border"></div>
+                                    </div>
+                                    <div><input type="email" class="newsletter_input newsletter_input_email" id="newsletter_input_email" placeholder="Your e-mail" required="required">
+                                        <div class="input_border"></div>
+                                    </div>
+                                </div>
+                                <div><button class="newsletter_button">subscribe</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer_contact_row">
+                <div class="col-xl-10 offset-xl-1">
+                    <div class="row">
+
+                        <!-- Footer Contact Item -->
+                        <div class="col-xl-4 footer_contact_col">
+                            <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                <div class="footer_contact_icon"><img src="{% static 'images/sign.svg' %}" alt=""></div>
+                                <div class="footer_contact_title">give us a call</div>
+                                <div class="footer_contact_list">
+                                    <ul>
+                                        <li>Office Landline: +44 5567 32 664 567</li>
+                                        <li>Mobile: +44 5567 89 3322 332</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Contact Item -->
+                        <div class="col-xl-4 footer_contact_col">
+                            <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                <div class="footer_contact_icon"><img src="{%  static 'images/trekking.svg' %}" alt=""></div>
+                                <div class="footer_contact_title">come & drop by</div>
+                                <div class="footer_contact_list">
+                                    <ul style="max-width:190px">
+                                        <li>4124 Barnes Street, Sanford, FL 32771</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer Contact Item -->
+                        <div class="col-xl-4 footer_contact_col">
+                            <div class="footer_contact_item d-flex flex-column align-items-center justify-content-start text-center">
+                                <div class="footer_contact_icon"><img src="images/around.svg" alt=""></div>
+                                <div class="footer_contact_title">send us a message</div>
+                                <div class="footer_contact_list">
+                                    <ul>
+                                        <li>youremail@gmail.com</li>
+                                        <li>Office@yourbusinessname.com</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+    <script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="../static/js/nav.js "></script>
+    <script src="https://kit.fontawesome.com/7e49ff3619.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
